@@ -1,0 +1,116 @@
+<UniversitySystem>
+    <Courses>
+        <Course>
+            <Code>CSE312</Code>
+            <Description>Operating System</Description>
+            <Students>
+                <Student>
+                    <Name>Arda Kılıç</Name>
+                    <Mail>ardakilic@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>1523</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.54</GPA>
+                </Student>
+                <Student>
+                    <Name>Serdil Ünlü</Name>
+                    <Mail>serdilunlu@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>975</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.45</GPA>
+                </Student>
+            </Students>
+        </Course>
+        <Course>
+            <Code>CSE333</Code>
+            <Description>System Programming</Description>
+            <Students>
+                <Student>
+                    <Name>Arda Kılıç</Name>
+                    <Mail>ardakilic@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>1523</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.54</GPA>
+                </Student>
+                <Student>
+                    <Name>Serdil Ünlü</Name>
+                    <Mail>serdilunlu@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>975</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.45</GPA>
+                </Student>
+            </Students>
+        </Course>
+    </Courses>
+    
+    <Classrooms>
+        <Classroom>
+            <SquareMeter>130</SquareMeter>
+            <MaxPeople>70</MaxPeople>
+            <Name>Z06</Name>
+        </Classroom>
+        <Classroom>
+            <SquareMeter>340</SquareMeter>
+            <MaxPeople>200</MaxPeople>
+            <Name>Z10</Name>
+        </Classroom>
+    </Classrooms>
+    
+    <People>
+        <Student>
+            <Name>Arda Kılıç</Name>
+            <Mail>ardakilic@gtu.edu.tr</Mail>
+            <Department>Computer Engineering</Department>
+            <StudentNumber>1523</StudentNumber>
+            <Grade>3</Grade>
+            <GPA>3.54</GPA>
+        </Student>
+        <Student>
+            <Name>Serdil Ünlü</Name>
+            <Mail>serdilunlu@gtu.edu.tr</Mail>
+            <Department>Computer Engineering</Department>
+            <StudentNumber>975</StudentNumber>
+            <Grade>3</Grade>
+            <GPA>3.45</GPA>
+        </Student>
+
+        <Lecturer>
+            <Name>Yusuf Sinan Akgül</Name>
+            <Mail>ysa@gtu.edu.tr</Mail>
+            <Department>Computer Engineering</Department>
+            <Salary>35000</Salary>
+            <Courses>
+                <Course>CSE312</Course>
+                <Course>CSE333</Course>
+            </Courses>
+        </Lecturer>
+
+        <RegistrationConsultant>
+            <Name>Habil Kalkan</Name>
+            <Mail>hkalkan@gtu.edu.tr</Mail>
+            <Department>Computer Engineering</Department>
+            <Salary>25000</Salary>
+            <AuthorizedStudents>
+                <Student>
+                    <Name>Arda Kılıç</Name>
+                    <Mail>ardakilic@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>1523</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.54</GPA>
+                </Student>
+                <Student>
+                    <Name>Serdil Ünlü</Name>
+                    <Mail>serdilunlu@gtu.edu.tr</Mail>
+                    <Department>Computer Engineering</Department>
+                    <StudentNumber>975</StudentNumber>
+                    <Grade>3</Grade>
+                    <GPA>3.45</GPA>
+                </Student>
+            </AuthorizedStudents>
+        </RegistrationConsultant>
+    </People>
+</UniversitySystem>

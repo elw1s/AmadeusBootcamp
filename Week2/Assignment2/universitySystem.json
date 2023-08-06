@@ -1,0 +1,133 @@
+{
+    "UniversitySystem": {
+      "Courses": {
+        "Course": [
+          {
+            "Code": "CSE312",
+            "Description": "Operating System",
+            "Students": {
+              "Student": [
+                {
+                  "Name": "Arda Kılıç",
+                  "Mail": "ardakilic@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "1523",
+                  "Grade": "3",
+                  "GPA": "3.54"
+                },
+                {
+                  "Name": "Serdil Ünlü",
+                  "Mail": "serdilunlu@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "975",
+                  "Grade": "3",
+                  "GPA": "3.45"
+                }
+              ]
+            }
+          },
+          {
+            "Code": "CSE333",
+            "Description": "System Programming",
+            "Students": {
+              "Student": [
+                {
+                  "Name": "Arda Kılıç",
+                  "Mail": "ardakilic@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "1523",
+                  "Grade": "3",
+                  "GPA": "3.54"
+                },
+                {
+                  "Name": "Serdil Ünlü",
+                  "Mail": "serdilunlu@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "975",
+                  "Grade": "3",
+                  "GPA": "3.45"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Classrooms": {
+        "Classroom": [
+          {
+            "SquareMeter": "130",
+            "MaxPeople": "70",
+            "Name": "Z06"
+          },
+          {
+            "SquareMeter": "340",
+            "MaxPeople": "200",
+            "Name": "Z10"
+          }
+        ]
+      },
+      "People": {
+        "Student": [
+          {
+            "Name": "Arda Kılıç",
+            "Mail": "ardakilic@gtu.edu.tr",
+            "Department": "Computer Engineering",
+            "StudentNumber": "1523",
+            "Grade": "3",
+            "GPA": "3.54"
+          },
+          {
+            "Name": "Serdil Ünlü",
+            "Mail": "serdilunlu@gtu.edu.tr",
+            "Department": "Computer Engineering",
+            "StudentNumber": "975",
+            "Grade": "3",
+            "GPA": "3.45"
+          }
+        ],
+        "Lecturer": [
+          {
+            "Name": "Yusuf Sinan Akgül",
+            "Mail": "ysa@gtu.edu.tr",
+            "Department": "Computer Engineering",
+            "Salary": "35000",
+            "Courses": {
+              "Course": [
+                "CSE312",
+                "CSE333"
+              ]
+            }
+          }
+        ],
+        "RegistrationConsultant": [
+          {
+            "Name": "Habil Kalkan",
+            "Mail": "hkalkan@gtu.edu.tr",
+            "Department": "Computer Engineering",
+            "Salary": "25000",
+            "AuthorizedStudents": {
+              "Student": [
+                {
+                  "Name": "Arda Kılıç",
+                  "Mail": "ardakilic@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "1523",
+                  "Grade": "3",
+                  "GPA": "3.54"
+                },
+                {
+                  "Name": "Serdil Ünlü",
+                  "Mail": "serdilunlu@gtu.edu.tr",
+                  "Department": "Computer Engineering",
+                  "StudentNumber": "975",
+                  "Grade": "3",
+                  "GPA": "3.45"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+  
