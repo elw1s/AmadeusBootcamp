@@ -3,30 +3,56 @@
 
 using namespace std;
 
+int isTurtleDead(int x, int y, int turtleX, int turtleY){
+    return (turtleX <= 0 || turtleX >= x) || (turtleY <= 0 || turtleY >= y) ? 1 : 0;
+}
 
-void checkPoint(int radius, int x, int y, float percent,
-										float startAngle)
-{
-	// calculate endAngle
+int isTurtleInRange(int radius, int x, int y, float percent,float startAngle){
 	float endAngle = 360/percent + startAngle;
-
-	// Calculate polar co-ordinates
 	float polarradius = sqrt(x*x+y*y);
 	float Angle = atan(y/x);
 
-	// Check whether polarradius is less then radius of circle
-	// or not and Angle is between startAngle and endAngle
-	// or not
 	if (Angle>=startAngle && Angle<=endAngle && polarradius<radius)
-		printf("Point (%d, %d) exist in the circle sector\n", x, y);
+		return 1;
 	else
-		printf("Point (%d, %d) does not exist in the circle sector\n",
-															x, y);
+		return 0;
+}
+
+void printLog(char * str, std::ofstream& file){
+    //Burada file'a yazı yazdır.
+}
+
+//turtleList, fiskiyeList, alan boyutu
+void startGame(){
+    while(!turtleList.empty()){
+
+        for(int i = 0; i < turtleList.size(); i++){
+            turtleList[i].move(); //[] kullanımı yok iterator lazım
+            
+            //Turtle alan disina cikti mi kontrolü
+            if(isTurtleDead(x,y,turtleList[i].getX(), turtleList[i].getY())){
+                //O zaman log gir
+                printLog();
+            }
+            
+
+            //Fıskiye foru döndür, onun bilgilerini alıp isTurtleInRange çağır
+
+        }
+
+    }
 }
 
 void init(){
 
+    //alan boyutu ne olacak?
+    //Kaç kaplumbağa
+    //Kaç Fıskiye
+    //kullanıcıdan veri al ve listleri öyle oluştur. Alan dışında bi veri girilirse izin verme
+
+
     std::list<Turtle> turtleList;
+    std::list<Fiskiye> fiskiyeList;
 
     // Creating Turtle instances and adding them to the list
     Turtle turtle1(0, 0, 2, 45);
@@ -37,13 +63,14 @@ void init(){
     turtleList.push_back(turtle2);
     turtleList.push_back(turtle3);
 
-    while(!turtleList.empty()){
+    Fiskiye fiskiye1(0,0,3,10,0);
+    Fiskiye fiskiye2(5,10,3,10,0);
+    Fiskiye fiskiye3(8,12,3,10,0);
 
-        for(int i = 0; i < turtleList.size(); i++){
-            //turtleList.move();
-        }
+    fiskiyeList.push_back(fiskiye1);
+    fiskiyeList.push_back(fiskiye2);
+    fiskiyeList.push_back(fiskiye3);
 
-    }
 
 
 
@@ -71,9 +98,6 @@ void init(){
 // Driver code
 int main()
 {
-	int radius = 8, x = 3, y = 4;
-	float percent = 12, startAngle = 0;
-	//checkPoint(radius, x, y, percent, startAngle);
 	init();
     return 0;
 }

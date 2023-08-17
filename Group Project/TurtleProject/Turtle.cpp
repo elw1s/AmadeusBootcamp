@@ -54,6 +54,14 @@ class Turtle{
             return location;
         }
 
+        int getX(){
+            return location.getX();
+        }
+
+        int getY(){
+            return location.getY();
+        }
+
 };
 
 class Fiskiye{
