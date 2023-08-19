@@ -1,33 +1,32 @@
-#include <math.h>
+#include <cmath>
 
 class Point{
     float x;
     float y;
 
-    public:
+public:
 
-        Point(){}
+    Point(){}
 
-        Point(float x, float y){
-            this->x = x;
-            this->y = y;
-        }
+    Point(float x, float y){
+        this->x = x;
+        this->y = y;
+    }
 
-        void setX(float xVal){
-            this->x = xVal;
-        }
-        void setY(float yVal){
-            this->y = yVal;
-        }
-        float getX(){
-            return x;
-        }
+    void setX(float xVal){
+        this->x = xVal;
+    }
+    void setY(float yVal){
+        this->y = yVal;
+    }
+    float getX(){
+        return x;
+    }
 
-        float getY(){
-            return y;
-        }
+    float getY(){
+        return y;
+    }
 };
-
 
 class Turtle{
 
@@ -48,23 +47,34 @@ class Turtle{
         void move(){
             location.setX(location.getX() + (speed * cos(angle * M_PI / 180)));
             location.setY(location.getY() + (speed * sin(angle * M_PI / 180)));
+            // Küçük değerler için yuvarlama
+        if (abs(location.getX()) < 1e-10) {
+            location.setX(0);
+    }
+        
+        if (abs(location.getY()) < 1e-10) {
+        location.setY(0);
+    }
         }
+        
 
         Point currentLocation(){
             return location;
         }
 
-        int getX(){
+         int getX(){
             return location.getX();
         }
 
         int getY(){
             return location.getY();
         }
+        
+
 
 };
 
-class Fiskiye{
+class Fountain{
 
     private:
         Point center;
@@ -74,7 +84,7 @@ class Fiskiye{
 
     public:
 
-        Fiskiye(float x , float y, int r, int p, int sA){
+        Fountain(float x , float y, int r, int p, int sA){
             center.setX(x);
             center.setY(y);
             this->radius = r;
@@ -98,5 +108,23 @@ class Fiskiye{
             startAngle += percent;
             startAngle = (startAngle % 360);
         }
+        float getY(){
+            return center.getY();
+    
+        }
+        float getX(){
+            return center.getX();
+    
+        }
+    
+        
+
 
 };
+
+
+
+
+
+
+

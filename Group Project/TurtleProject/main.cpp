@@ -1,16 +1,15 @@
-#include<bits/stdc++.h>
+#include <cmath>
 #include "Turtle.cpp"
+#include <iostream>
+#include <list>
+#include <thread>
+#include <chrono>
 
 using namespace std;
-
-int isTurtleDead(int x, int y, int turtleX, int turtleY){
-    return (turtleX <= 0 || turtleX >= x) || (turtleY <= 0 || turtleY >= y) ? 1 : 0;
-}
-
 int isTurtleInRange(int radius, int x, int y, float percent,float startAngle){
 	float endAngle = 360/percent + startAngle;
 	float polarradius = sqrt(x*x+y*y);
-	float Angle = atan(y/x);
+	float Angle = atan2(y, x);
 
 	if (Angle>=startAngle && Angle<=endAngle && polarradius<radius)
 		return 1;
@@ -18,86 +17,101 @@ int isTurtleInRange(int radius, int x, int y, float percent,float startAngle){
 		return 0;
 }
 
-void printLog(char * str, std::ofstream& file){
-    //Burada file'a yazı yazdır.
-}
+std::list<Turtle> turtleList;
+std::list<Fountain> FountainList;
 
-//turtleList, fiskiyeList, alan boyutu
-void startGame(){
-    while(!turtleList.empty()){
+void updateAndPrintTurtlesStatus(std::list<Turtle>& turtleList, std::list<Fountain>& FountainList, float xMin, float xMax, float yMin, float yMax) {
+    
+    while (!turtleList.empty()) {
+        int turtleIndex = 1;  // For holding turtle Indexes
 
-        for(int i = 0; i < turtleList.size(); i++){
-            turtleList[i].move(); //[] kullanımı yok iterator lazım
-            
-            //Turtle alan disina cikti mi kontrolü
-            if(isTurtleDead(x,y,turtleList[i].getX(), turtleList[i].getY())){
-                //O zaman log gir
-                printLog();
-            }
-            
 
-            //Fıskiye foru döndür, onun bilgilerini alıp isTurtleInRange çağır
-
+        //Move all fountains before calculating turtle's positions.
+        for(auto it = FountainList.begin(); it != FountainList.end(); ++it){
+            Fountain &f = *it;
+            f.move();
         }
 
+        for (auto it = turtleList.begin(); it != turtleList.end();) {
+            Turtle &t = *it;
+            t.move();
+            Point p = t.currentLocation();
+
+            bool isInAnyFountainRange = false;
+
+            for (Fountain &f : FountainList) {
+                if (isTurtleInRange(f.getRadius(), p.getX() - f.getX(), p.getY() - f.getY(), f.getPercent(), f.getStartAngle())) {
+                    std::cout << turtleIndex << ". Kaplumbağa (" << p.getX() << ", " << p.getY() << ") konumunda ve (" << f.getX() << ", " << f.getY() << ") konumundaki fıskiye'nin yarıçapı içinde." << std::endl;
+                    isInAnyFountainRange = true;
+                }
+            }
+
+            if(!isInAnyFountainRange) {
+                std::cout << turtleIndex << ". Kaplumbağa (" << p.getX() << ", " << p.getY() << ") konumunda ve hiçbir fıskiye'nin yarıçapı içinde değil." << std::endl;
+            }
+
+            if (p.getX() < xMin || p.getX() > xMax || p.getY() < yMin || p.getY() > yMax) {
+                std::cout << turtleIndex << ". Kaplumbağa (" << p.getX() << ", " << p.getY() << ") konumunda ve sınırların dışında. Kaldırılıyor." << std::endl;
+                it = turtleList.erase(it);
+            } else {
+                ++it;
+            }
+            turtleIndex++;
+            
+        }
+
+        cout << "Wait for 100 ms...\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(100)); //Wait for 100 ms
+        //The time could be calculated by using time interval but this is simple. The program will sleep
+        //for other processes.
     }
-}
-
-void init(){
-
-    //alan boyutu ne olacak?
-    //Kaç kaplumbağa
-    //Kaç Fıskiye
-    //kullanıcıdan veri al ve listleri öyle oluştur. Alan dışında bi veri girilirse izin verme
-
-
-    std::list<Turtle> turtleList;
-    std::list<Fiskiye> fiskiyeList;
-
-    // Creating Turtle instances and adding them to the list
-    Turtle turtle1(0, 0, 2, 45);
-    Turtle turtle2(10, 5, 3, 60);
-    Turtle turtle3(1, 1, 1, 30);
-
-    turtleList.push_back(turtle1);
-    turtleList.push_back(turtle2);
-    turtleList.push_back(turtle3);
-
-    Fiskiye fiskiye1(0,0,3,10,0);
-    Fiskiye fiskiye2(5,10,3,10,0);
-    Fiskiye fiskiye3(8,12,3,10,0);
-
-    fiskiyeList.push_back(fiskiye1);
-    fiskiyeList.push_back(fiskiye2);
-    fiskiyeList.push_back(fiskiye3);
-
-
-
-
-    Turtle t = Turtle(1,1,1,90);
-    t.move();
-    Point newPoints = t.currentLocation();
-    printf("x: %f, y: %f\n",newPoints.getX(), newPoints.getY());
-
-    Fiskiye f = Fiskiye(0,0,3,10,0);
-
-    checkPoint(f.getRadius(), newPoints.getX(), newPoints.getY(), f.getPercent(), f.getStartAngle());
-
-
-    //Turtle.move
-    //alanıGeçtiMi()Turtle, x,y 
-    //Fiskiye.move
-    //checkPoint()
-
-
+    cout << "Finished\n";
 }
 
 
+int main() {
+    int n, m;
+    float speed = 2;
+    int radius = 8, x = 3, y = 4;
+    float percent = 1, startAngle = 0;
+
+    // Dikdörtgen sınırlarını kullanıcıdan al
+    float a, b;
+    std::cout << "Dikdörtgenin genişliğini girin (X değeri): ";
+    std::cin >> a;
+    std::cout << "Dikdörtgenin yüksekliğini girin (Y değeri): ";
+    std::cin >> b;
+
+    // Dikdörtgen sınırlarını hesapla
+    float xMin = 0;
+    float yMin = 0;
+    float xMax = a;
+    float yMax = b;
 
 
-// Driver code
-int main()
-{
-	init();
+    cout << "Enter the number of turtles: ";
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cout << "Enter the speed, x, y and angle values for the turtle: ";
+        cin >> speed >> x >> y>> startAngle;
+        Turtle t = Turtle(x, y, speed, startAngle);
+        turtleList.push_back(t);
+    }
+
+    cout << "Enter the number of Fountains: ";
+    cin >> m;
+    for (int i = 0; i < m; i++) {
+        cout << "Enter the x,y and radius for the Fountain: ";
+        cin >> x>> y>>radius ;
+        Fountain f = Fountain(x, y, radius, 10, 0);
+        FountainList.push_back(f);
+    }
+
+
+
+updateAndPrintTurtlesStatus(turtleList, FountainList, xMin, xMax, yMin, yMax);
+
+
+
     return 0;
 }
